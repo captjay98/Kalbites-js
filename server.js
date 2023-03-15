@@ -2,6 +2,7 @@ const express = require("express");
 const morgan = require("morgan");
 const mongoose = require("mongoose");
 
+
 const app = express();
 
 app.set("view engine", "ejs");
@@ -31,5 +32,12 @@ const items = [
 ]
 
 app.get("/", (req, res) => {
-  res.render("temp.ejs", { Items: items })
+  res.render("home.ejs", { Items: items })
 })
+
+const itemRouter = require("./routes/items");
+const userRouter = require("./routes/users");
+
+app.use("/items", itemRouter)
+app.use("/users", userRouter);
+

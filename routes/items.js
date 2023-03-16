@@ -1,20 +1,27 @@
-const express = require("express");
+import express from "express";
+import {
+  cake_index, muffins_index, cookies_index,
+  rolls_index, cups_index, brownies_index
+} from "../controllers/itemController.js";
+
 const irouter = express.Router();
-const icontroller = require("../controllers/itemcontroller")
 
-irouter.get("/", icontroller.cake_index);
 
-irouter.get("/", icontroller.parfait_index);
+irouter.get("/", cake_index);
 
-irouter.get("/", icontroller.brownie_index);
+irouter.get("/", muffins_index);
 
-// router.get();//tres leches
+irouter.get("/", cookies_index)
 
-irouter.post("/", icontroller.cake_index);
+irouter.get("/", rolls_index);
+
+irouter.get("/", cups_index);
+
+irouter.get("/", brownies_index);
 
 // router.patch();
 
 // router.delete();
 
 
-module.exports = irouter;
+export { irouter };

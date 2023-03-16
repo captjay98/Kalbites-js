@@ -1,3 +1,4 @@
+import { User } from "../models/user.js";
 
 
 const login_index = (req, res) => {
@@ -16,7 +17,7 @@ const order_index = (req, res) => {
   res.render("order");
 }
 
-module.exports = {
+export {
   login_index,
   register_Index,
   profile_index,

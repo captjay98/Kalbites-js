@@ -1,7 +1,10 @@
-const express = require("express");
-const morgan = require("morgan");
-const mongoose = require("mongoose");
+// const express = require("express");
+// const morgan = require("morgan");
+// const mongoose = require("mongoose");
 
+import express from "express";
+import morgan from "morgan";
+import mongoose from "mongoose";
 
 const app = express();
 
@@ -53,10 +56,12 @@ app.get("/blogs", (req, res) => {
   res.render("blogs", { blogs: blogs })
 })
 
+import { irouter } from "./routes/items.js";
+import { urouter } from "./routes/users.js";
+import { brouter } from "./routes/blogs.js";
 
-const itemRouter = require("./routes/items");
-const userRouter = require("./routes/users");
+app.use("/items", irouter)
+app.use("/users", urouter);
+app.use("/blogs", brouter);
 
-app.use("/items", itemRouter)
-app.use("/users", userRouter);
 

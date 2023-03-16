@@ -31,9 +31,28 @@ const items = [
 
 ]
 
+const blogs = [
+  { title: "Number 1 Crackhead Ninja", snippet: "Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint cillum sint consectetur cupidatat." },
+  { title: "Number 1 legendary Sanin", snippet: "Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint cillum sint consectetur cupidatat." },
+  { title: "The greatest Uchiha shinobi", snippet: "Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint cillum sint consectetur cupidatat." }
+];
+
 app.get("/", (req, res) => {
-  res.render("home.ejs", { Items: items })
+  res.render("home", { Items: items })
 })
+
+// app.get("/home", (req, res) => {
+//   res.render("home");
+// })
+
+app.get("/chops", (req, res) => {
+  res.render("chops");
+})
+
+app.get("/blogs", (req, res) => {
+  res.render("blogs", { blogs: blogs })
+})
+
 
 const itemRouter = require("./routes/items");
 const userRouter = require("./routes/users");

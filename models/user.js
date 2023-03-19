@@ -10,6 +10,7 @@ const userSchema = Schema({
   phone: {
     type: String,
     required: true,
+    unique: true
   },
 
   address: {

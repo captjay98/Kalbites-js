@@ -1,0 +1,23 @@
+<html lang="en">
+
+<%- include("../partials/header.ejs")  %>
+
+ <body>
+
+ <%- include("../partials/nav.ejs")  %>
+
+  <div class="detail content">
+     <form action="/items" method="POST">
+        <label for="id"><%= item.id %></label>
+        <input type="text" id="id" name="id" required>
+        
+        <label for="name"><%= item.name %></label>
+        <input type="text" id="name" name="name" required>
+
+        <label for="price"><%= item.price %></label>
+          <button>submit</button>
+    </form>
+  </div>
+<%- include("../partials/footer.ejs")  %>
+
+</body>

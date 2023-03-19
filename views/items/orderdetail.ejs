@@ -1,0 +1,24 @@
+<html lang="en">
+
+<%- include("../partials/header.ejs")  %>
+
+ <body>
+
+ <%- include("../partials/nav.ejs")  %>
+
+  <div class="detail content">
+    <h2><%= detail.chop.name %></h2>
+    <h2><%= detail.chop.price %></h2>
+
+
+    <div class="content">
+      <p><%= detail.buyer.address %></p>
+       <h2><%= detail.buyer.name %></h2>
+
+    </div>
+
+  </div>
+<%- include("../partials/footer.ejs")  %>
+
+</body>
+</html>

@@ -1,117 +1,98 @@
-<html lang="en">
+<!DOCTYPE html>
 
-<%- include("./partials/header.ejs")  %>
+<%- include("./partials/header.ejs") %>
 
- <body>
-
- <%- include("./partials/mainnav.ejs")  %>
-
-  <section class="chops">
-    <h1>Our Chops</h1>
-    <p>Find below the chops that are currently available</p>
+  <body>
+    <div class="container">
+      <div class="device">
+        <%- include("./partials/greeting.ejs") %>
 
 
-    <div class="row">
+          <div class="videobox">
+            <div class="wrapper">
+              <!-- <button type="button" class="play"></button> -->
+              <h3>What would you like to buy today?</h3>
+            </div>
+          </div>
 
-      <div class="sellers-col">
-        <img src="images/banner.jpg" alt="cake">
-        <div class="layer">
-          <h3>CAKES</h3>
-        </div>
+          <a href="items/brownies">
+            <div class="recipes">
+              <div class="recipe first">
+
+                <div class="wrapper">
+                  <div class="recipe-header">
+                  </div>
+                  <div class="recipe-info">
+                    <span>Brownies</span>
+                  </div>
+                </div>
+              </div>
+          </a>
+
+          <a href="items/cakes">
+            <div class="recipe second">
+              <div class="wrapper">
+                <div class="recipe-header">
+                </div>
+                <div class="recipe-info">
+                  <span>Bento Cakes</span>
+                </div>
+              </div>
+            </div>
+          </a>
+
+          <a href="items/brownies">
+            <div class="recipe third">
+              <div class="wrapper">
+                <div class="recipe-header">
+                </div>
+                <div class="recipe-info">
+                  <span>Cupcakes</span>
+                </div>
+              </div>
+            </div>
+          </a>
+
+          <a href="items/milkcakes">
+            <div class="recipe fourth">
+              <div class="wrapper">
+                <div class="recipe-header">
+                </div>
+                <div class="recipe-info">
+                  <span>Milk Cakes<span>
+                </div>
+              </div>
+            </div>
+          </a>
+
+          <a href="items/muffins">
+            <div class="recipe fifth">
+              <div class="wrapper">
+                <div class="recipe-header">
+                </div>
+                <div class="recipe-info">
+                  <span>Muffins</span>
+                </div>
+              </div>
+            </div>
+          </a>
+
+          <a href="items/cakes">
+            <div class="recipe sixth">
+              <div class="wrapper">
+                <div class="recipe-header">
+                </div>
+                <div class="recipe-info">
+                  <span>Swiss Rolls</span>
+                </div>
+              </div>
+            </div>
+          </a>
+
       </div>
-
-      <div class="sellers-col">
-        <img src="images/banner.jpg" alt="Parfait">
-        <div class="layer">
-          <h3>DESSERTS</h3>
-        </div>
-      </div>
-
-      <div class="sellers-col">
-        <img src="images/banner.jpg" alt="Brownie">
-        <div class="layer">
-          <h3>COOKIES</h3>
-        </div>
+      │ <%- include("./partials/nav.ejs") %>
     </div>
     </div>
-  </section>
+  </body>
 
-  <section class="sellers">
-    <h1>Best Sellers</h1>
-    <p>Find Below our Best Sellers</p>
-
-    <div class="row">
-
-      <div class="sellers-col">
-        <img src="images/banner.jpg" alt="cake">
-        <div class="layer">
-          <h3>Bento Cakes</h3>
-        </div>
-      </div>
-
-      <div class="sellers-col">
-        <img src="images/banner.jpg" alt="Parfait">
-        <div class="layer">
-          <h3>Swiss Rolls</h3>
-        </div>
-      </div>
-
-      <div class="sellers-col">
-        <img src="images/banner.jpg" alt="Brownie">
-        <div class="layer">
-          <h3>Chocolate Cookies</h3>
-        </div>
-
-      </div>
-
-    </div>
-
-  </section>
-
-  <section class="reviews">
-     <h1>Reviews</h1>
-     <p>Words of wisdom from Kalbites fans</p>
-
-     <div class="row">
-       <div class="review-col">
-        <div>
-          <p>Lorem ipsum dolor sit amet, officia excepteur ex fugiat
-          reprehenderit enim labore culpa sint ad nisi
-          Lorem pariatur mollit ex esse exercitation amet.
-          amet voluptate voluptate dolor minim nulla est proident.
-          consectetur et est culpa et culpa duis.
-          </p>
-          <h3>Naruto Uzumaki</h3>
-        </div>
-      </div>
-
-      <div class="review-col">
-        <div>
-          <p>Lorem ipsum dolor sit amet, officia excepteur ex fugiat
-          reprehenderit enim labore culpa sint ad nisi
-          Lorem pariatur mollit ex esse exercitation amet.
-          amet voluptate voluptate dolor minim nulla est proident.
-          consectetur et est culpa et culpa duis.
-          </p>
-          <h3>Eren Yeager</h3>
-       </div>
-      </div>
-
-       <div class="review-col">
-         <div>
-          <p>Lorem ipsum dolor sit amet, officia excepteur ex fugiat
-          reprehenderit enim labore culpa sint ad nisi
-          Lorem pariatur mollit ex esse exercitation amet.
-          amet voluptate voluptate dolor minim nulla est proident.
-          consectetur et est culpa et culpa duis.
-          </p>
-          <h3>Kamobako Gonpachiro</h3>
-         </div>
-       </div>
-    </div>
-  </section>
-
-<%- include("./partials/footer.ejs")  %>
-</body>
-
-</html>
+  </html>

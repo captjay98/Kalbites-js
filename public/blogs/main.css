@@ -1,0 +1,397 @@
+html,
+body {
+  font-family: "Poppins", sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: black;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+button,
+input {
+  font-family: "Poppins", sans-serif;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  width:max-width;
+  padding: 30px 0;
+  background-color:whitesmoke;
+}
+
+.device {
+  display: flex;
+  flex-direction: column;
+  width: 926px;
+  height: 926px;
+  /* box-shadow: 0 0 20px 1px rgba(0, 0, 0, 0.2); */
+  border-radius: 30px;
+  background-color: black;
+  color: gold;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  padding: 40px 20px 20px;
+}
+
+.left-side {
+  display: flex;
+  flex-direction: column;
+}
+
+.left-side h1 {
+  font-size: 20px;
+  color: #58907d;
+  margin: 0 0 10px;
+  padding: 0;
+}
+
+.left-side span {
+  font-size: 14px;
+  color: #959595;
+}
+
+.avatar {
+  margin-left: auto;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: url() no-repeat center;
+  background-size: cover;
+}
+
+
+
+.videobox {
+  position: relative;
+  width: calc(100% - 40px);
+  height:150px;
+  background: url() no-repeat center;
+  background-size: cover;
+  margin: 20px 20px 10px;
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.videobox .wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color:#f6bc2b;
+  color: #0a1829;
+}
+
+
+.filters {
+  display: flex;
+  justify-content: space-evenly;
+  list-style-type: none;
+  padding: 0 20px;
+  margin: 20px 0 0;
+  margin-bottom: 10px;
+  white-space: nowrap;
+  overflow: auto;
+ 
+  }
+
+.filters li a{
+  color: #0a1829;
+  text-decoration: none;
+
+}
+
+.filters li {
+  margin-right: 15px;
+  padding: 10px 20px;
+  font-size: 14px;
+  border-radius: 14px;
+  background-color:#f6bc2b;
+  color: #0a1829;
+  cursor: pointer;
+  transition: all 0.3s ease-out;
+}
+
+.filters li:last-child {
+  margin-right: 0;
+}
+
+
+.filters li.active {
+  background-color: grey;
+  color: black;
+  font-weight: 600;
+  cursor: default;
+}
+
+
+/* .filters li a.active { */
+/*   background-color: blue; */
+/*   color: black; */
+/* } */
+
+.recipes {
+  padding: 20px 20px 0;
+  height: 550px;
+  overflow-y: auto;
+}
+
+.recipe {
+  border-radius: 20px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 200px;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  margin-bottom: 20px;
+}
+
+
+
+.recipe.detail{
+  height: 350px;
+  /* background-color: black; */
+  color: white;
+  display: flex;
+  flex-direction: column;
+  padding: 15px;
+  align-items: center;
+  border-radius: 25px;
+  border-color: gold;
+}
+
+.recipe.detail img{
+  border-radius: 25px;
+  /* width: 100%; */
+  /* height: 90%;  */
+  align-items: center;
+ }
+
+.description {
+  /* background-color: blue; */
+  display: flex;
+  flex-direction: row;
+  gap: 155px;
+}
+
+
+.price {
+  align-items: left;
+  /* background-color: yellow; */
+}
+
+.info { 
+  align-items: right;
+/* background-color: red; */
+}
+
+
+.account {
+  border-radius: 20px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 665px;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  margin-bottom: 20px;
+}
+
+.account-details {
+  /* height: 555px; */
+  align-items: center;
+  padding: 55px;
+}
+
+
+.recipe:hover .wrapper {
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+.recipe .wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  background-color: rgba(0, 0, 0, 0.5);
+  transition: all 0.3s ease-out;
+}
+
+.recipe.first {
+  background-image: url(images/bentocake.jpg);
+}
+
+.recipe.second {
+  background-image: url(images/bentocakepack.jpg);
+}
+
+.recipe.third {
+  background-image: url(images/muffins.jpg);
+}
+
+.recipe.fourth {
+  background-image: url(images/milkcake.jpg);
+}
+
+.recipe.fifth {
+  background-image: url(images/cupcakes.jpg);
+}
+
+.recipe.sixth {
+  background-image: url(images/bentocakepack.jpg);
+}
+
+.recipe-header {
+  display: flex;
+  align-items: center;
+  padding: 20px;
+}
+
+.recipe-header span {
+  font-size: 14px;
+  color: #ffffff;
+}
+
+
+
+.recipe-info {
+  display: flex;
+  flex-direction: column;
+  margin-top: auto;
+  padding: 20px;
+}
+
+.recipe-info span {
+  color: #ffffff;
+  font-weight: 600;
+  margin-bottom: 10px;
+  font-size: 16px;
+}
+
+.content{
+  margin-left: 20px;
+  /* width: 428px; */
+  height: 555px;
+overflow-y: auto;
+  /* overflow: hidden; */
+}
+
+.blogs{
+  margin: auto;
+  height: 755px;
+ width: 85%;
+  padding: 11px;
+}
+
+.blogs a{
+  display: block;
+  padding: 20px;
+  border-left: 5px solid gold;
+  border-bottom: 3px solid gold;
+  margin: 20px;
+}
+.blogs h2{
+  margin: 20px;
+  text-align: center;
+}
+.blogs h3{
+  color: black;
+
+  text-align: left;
+}
+
+.blogs a:hover h3 {
+  color: gold;
+}
+
+
+.detail {
+  width: 80%;
+  margin-top: 35px;
+  margin-left: auto;
+ margin-right: auto;
+  padding: 25px;
+  background-color: blue;
+}
+
+.delete {
+  position: absolute;
+  top: 0;
+  right: 0;
+  border-radius: 50%;
+  padding: 8px;
+}
+
+.delete hover {
+  cursor: pointer;
+  box-shadow: 1px 2px 3px rgba(0,0,0,0.2)
+}
+
+.creation{
+  max-width: 80%;
+  height:  755px;
+  align-items: center;
+  margin: auto;
+  margin-top: 155px;
+overflow-y: auto;
+overflow: hidden;
+}
+
+.create-blog {
+  /* width: 80%; */
+  margin: 0 auto;
+  height: 555px;
+overflow-y: auto;
+overflow: hidden;
+}
+
+
+
+
+.create-blog form{
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.create-blog input,
+.create-blog textarea{
+  display: block;
+  width: 100%;
+  margin: 10px 0;
+  padding: 8px;
+}
+
+.create-blog label{
+  display: block;
+  margin-top: 24px;
+}
+
+textarea{
+  height: 120px;
+}
+
+.create-blog button{
+  margin-top: 20px;
+  background: crimson;
+  color: white;
+  padding: 6px;
+  border: 0;
+  font-size: 1.2em;
+  cursor: pointer;
+}

@@ -1,13 +1,14 @@
-import { Blog } from "../models/blog.js";
+const Blog = require("../models/blog");
 
-const blog_index = (req, res) => {
-  Blog.find().sort({ createdAt: -1 })
-    .then((result) => {
-      res.render("blogs/blogs", { title: "All Blogs", blogs: result })
-    })
-    .catch((err) => {
-      console.log(err);
-    })
+const blog_index = async (req, res) => {
+  try {
+    const blogs = await Blog.find().sort({ createdAt: -1 })
+
+    res.render("blogs/blogs", { title: "All Blogs", blogs: blogs })
+  } catch (err) {
+
+    console.log(err);
+  }
 }
 
 // i don't know wy this isn't woring but i intend to find out
@@ -48,7 +49,7 @@ const blog_delete = (req, res) => {
     })
 }
 
-export {
+module.exports = {
   blog_index,
   blog_details,
   blog_create_get,

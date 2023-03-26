@@ -1,16 +1,30 @@
-<html lang="en">
+<!DOCTYPE html>
 
-<%- include("./partials/header.ejs")  %>
+<%- include("./partials/header.ejs") %>
 
-<body>
-
- <%- include("./partials/nav.ejs")  %>
-
-  <div class="not found content">
-    <h2>OOPS!!! Page not found</h2>
-  </div>
-<%- include("./partials/footer.ejs")  %>
+  <body>
+    <div class="container">
+      <div class="device">
+        <%- include("./partials/greeting.ejs") %>
 
 
-</body>
-</html>
+          <div class="videobox">
+            <div class="wrapper">
+              <!-- <button type="button" class="play"></button> -->
+              <h3>404! Requested Page was not found</h3>
+            </div>
+          </div>
+
+          <div class="recipes">
+
+
+
+
+
+          </div>
+          │ <%- include("./partials/nav.ejs") %>
+      </div>
+    </div>
+  </body>
+
+  </html>

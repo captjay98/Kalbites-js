@@ -1,0 +1,66 @@
+<!DOCTYPE>
+<!DOCTYPE html>
+<html lang="en">
+
+<%- include("../partials/header.ejs") %>
+
+  <body>
+    <div class="container">
+      <div class="device">
+        <%- include("../partials/greeting.ejs") %>
+
+          <div class="videobox">
+            <div class="wrapper">
+              <h3>ACCOUNT</h3>
+            </div>
+          </div>
+
+
+          <div class="account">
+            <div class="account-details">
+              <div class="hey">
+                <h3>Account Name</h3>
+                <h5>
+                  <%= user.first %>
+                    <%= user.last %>
+                </h5>
+              </div>
+
+              <div class="hey">
+                <h3>Account UserName</h3>
+                <h5>
+                  <%= user.username %>
+                </h5>
+              </div>
+
+
+              <div class="hey">
+
+                <h3> Phone Number </h3>
+                <h5>
+                  <%= user.phone %>
+                    <h5>
+              </div>
+
+              <div class="hey">
+
+                <h3>Registered Address</h3>
+                <h5>
+                  <%= user.address %>
+                </h5>
+              </div>
+              <form action="/logout?_method=DELETE">
+                <button type="submit">Log Out</button>
+              </form>
+
+            </div>
+
+            <div class="prevorders"></div>
+          </div>
+
+          │ <%- include("../partials/nav.ejs") %>
+      </div>
+    </div>
+  </body>
+
+</html>

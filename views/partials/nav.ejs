@@ -1,31 +1,6 @@
- <section class="header">
+<ul class="filters">
+   <li class="active"><a href="/">Home</a></li>
+   <li><a href="/blogs">Blog</a></li>
+   <li><a href="/account">Account</a></li>
+</ul>
 
-    <nav>
-      <a href="/">
-        <h1>KALBITES</h1>
-      </a>
-      <div class="nav-links" id="navLinks">
-        <i class="fa fa-times" onclick="hideMenu()">B</i>
-        <ul>
-          <li><a href="/">HOME</a></li>
-          <li><a href="/items">CHOPS</a></li>
-          <li><a href="/blogs">BLOG</a></li>
-          <li><a href="/account">ACCOUNT</a></li>
-        </ul>
-      </div>
-      <i class="fa fa-bars" onclick="showMenu()">k</i>
-    </nav>
-  </section>
-
-    <script>
-    const navLinks = document.getElementById("navLinks");
-
-    function showMenu() {
-      navLinks.style.right = "0";
-    }
-
-    function hideMenu() {
-      navLinks.style.right = "-200px";
-    }
-
-  </script>

@@ -4,9 +4,15 @@
 
  <body>
 
- <%- include("../partials/blognav.ejs")  %>
+  
+  </div>
+<div class="container">
+      <div class="device">
+<%- include("../partials/greeting.ejs") %>
 
-  <div class="detail content">
+        <body>
+          <div class="blogs content">
+            <div class="detail content">
     <h2><%= blog.title %></h2>
 
     <div class="content">
@@ -14,24 +20,10 @@
     </div>
     <a class="delete" data-doc"<%= blog._id %>">delete</a>
 
-  </div>
-<%- include("../partials/footer.ejs")  %>
+          </div>
+      </div>
 
-<script> 
-  const trashcan = document.querySelector("a.delete");
-
-  trashcan.addEventListener("click", (e) => {
-       const endpoint = `/blogs/${trashcan.dataset.doc}`;
-
-       fetch(endpoint, {
-       method:"DELETE"
-       })
-       .then((response) => {reesponse.json})
-       .then((data) => windows.location.href = data.redirect)
-       .catch((err) => console.log(err););
-       })
-
-</script>
+<%- include("../partials/nav.ejs")  %>
 
 </body>
 </html>

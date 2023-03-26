@@ -1,27 +1,26 @@
-import { Schema, model } from "mongoose";
-// import { User } from "./users.js"
+const mongoose = require("mongoose")
 
-const orderSchema = Schema({
+const orderSchema = mongoose.Schema({
   // date: {
   //   type: Date,
   //   default: Date.now
   // },
 
   chop: {
-    type: Schema.Types.ObjectId, ref: "Item",
+    type: mongoose.Schema.Types.ObjectId, ref: "Item",
     required: true
   },
 
   buyer: {
-    type: Schema.Types.ObjectId, ref: "User",
+    type: mongoose.Schema.Types.ObjectId, ref: "User",
     required: true
   }
 }, { timestamps: true })
 
 
-const Order = model("Order", orderSchema);
+const Order = mongoose.model("Order", orderSchema);
 
-export { Order };
+module.exports = Order;
 
 
 // #i thin this Schema will do but we shall wait and se first

@@ -1,29 +1,7 @@
-import { Item } from "../models/item.js";
-import { Order } from "../models/order.js"
-import { User } from "../models/user.js"
-
-
-const chops_index = (req, res) => {
-  res.render("items/chops", { title: "All Chops" });
-}
-
-
-const order_index_post = async (req, res) => {
-  const id = req.body.id
-  try {
-    const user = await User.find({ name: "Jamal" })
-    const chop = await Item.find({ _id: id })
-    const item = await new Order({
-      buyer: user[0],
-      chop: chop[0]
-    }).save()
-    console.log(item)
-    res.render("items/orderdetail", { detail: item, title: "Order Placed" });
-  } catch (error) {
-    console.log(error)
-    res.status(401).render("items/details", { title: "Order Failed" })
-  }
-}
+const Item = require("../models/item");
+const Order = require("../models/order")
+const User = require("../models/user")
+const redisClient = require("../redis_manager")
 
 
 const cake_index = async (req, res) => {
@@ -37,11 +15,15 @@ const cake_index = async (req, res) => {
 }
 
 const cake_detail = async (req, res) => {
-  const id = req.params.id;
+  const id = req.params.id
+  redisClient.set('itemid', id, (err, reply) => {
+    console.log(reply)
+  })
+
   console.log(id)
   try {
     const item = await Item.findById(id)
-    res.render("items/details", { item: item, title: "Cake" })
+    res.render("items/pay", { item: item, title: "Checkout" })
   } catch (err) {
     res.status(404).render("404", { title: "Item not found" })
     console.log(err)
@@ -104,9 +86,7 @@ const brownies_index = async (req, res) => {
 }
 
 
-export {
-  chops_index,
-  order_index_post,
+module.exports = {
   cake_index,
   cake_detail,
   muffins_index,

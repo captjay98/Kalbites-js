@@ -1,14 +1,16 @@
-import express from "express";
-import {
-  login_index, register_Index, profile_index
-} from "../controllers/userController.js"
+const express = require("express")
+const userController = require("../controllers/userController")
 
 const urouter = express.Router();
 
-urouter.post("/", login_index);
-urouter.post("/", register_Index);
-urouter.get("/", profile_index);
+
+urouter.get("/login", userController.login_index);
+urouter.get("/register", userController.register_Index);
+urouter.post("/login", userController.login_index_post);
+urouter.post("/register", userController.register_Index_post);
+urouter.get("/account", userController.profile_index);
+urouter.delete("/logout", userController.logout_index)
 // urouter.patch();
 // urouter.delete();
 
-export { urouter };
+module.exports = urouter;

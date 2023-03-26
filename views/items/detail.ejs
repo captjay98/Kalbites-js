@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<%- include("../partials/header.ejs") %>
+
+  <body>
+    <div class="container">
+      <div class="device">
+        <%- include("../partials/greeting.ejs") %>
+
+          <div class="videobox">
+
+            <div class="wrapper">
+              <!-- <button type="button" class="play"></button> -->
+              <h3>SELECT CAKE</h3>
+            </div>
+          </div>
+
+          <div class="recipes">
+            <form action="/cakes" method="POST">
+              <div class="recipe detail">
+                <h2>
+                  <%= item.price %>
+                </h2>
+
+                <div class="content">
+                  <p>
+                    <%= item.name %>
+                  </p>
+                </div>
+              </div>
+            </form>
+          </div>
+      </div>
+    </div>
+    <%- include("../partials/nav.ejs") %>
+      </div>
+      </div>
+  </body>
+
+</html>

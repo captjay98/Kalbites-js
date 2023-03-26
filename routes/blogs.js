@@ -1,15 +1,13 @@
-import express from "express";
-import {
-  blog_index, blog_create_post, blog_create_get,
-  blog_details, blog_delete
-} from "../controllers/blogController.js";
+const express = require("express")
+
+const blogController = require("../controllers/blogController")
 
 const brouter = express.Router();
 
-brouter.get("/", blog_index)
-brouter.post("/", blog_create_post);
-brouter.get("/create", blog_create_get)
-brouter.get("/:id", blog_details);
-brouter.delete("/:id", blog_delete)
+brouter.get("/", blogController.blog_index)
+brouter.post("/", blogController.blog_create_post);
+brouter.get("/create", blogController.blog_create_get)
+brouter.get("/:id", blogController.blog_details);
+brouter.delete("/:id", blogController.blog_delete)
 
-export { brouter };
+module.exports = brouter;

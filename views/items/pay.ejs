@@ -1,0 +1,98 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<%- include("../partials/header.ejs") %>
+  <body>
+    <div class="container">
+      <div class="device">
+        <%- include("../partials/greeting.ejs") %>
+
+          <div class="videobox">
+
+            <div class="wrapper">
+              <!-- <button type="button" class="play"></button> -->
+              <h3>SELECT CAKE</h3>
+            </div>
+          </div><div class="paycontainer">
+
+    <form action="/orderdetails" method="POST">
+        <div class="payrow">
+
+            <div class="paycol">
+
+                <h3 class="title">billing address</h3>
+
+                <div class="inputBox">
+                    <span>full name :</span>
+                    <input type="text" placeholder="FULL NAME">
+                </div>
+                <div class="inputBox">
+                    <span>email :</span>
+                    <input type="email" placeholder="example@example.com">
+                </div>
+                <div class="inputBox">
+                    <span>address :</span>
+                    <input type="text" placeholder="CC 95 NAGOGO STREET">
+                </div>
+                <div class="inputBox">
+                    <span>city :</span>
+                    <input type="text" placeholder="KADUNA">
+                </div>
+
+                <div class="payflex">
+                    <div class="inputBox">
+                        <span>state :</span>
+                        <input type="text" placeholder="KADUNA">
+                    </div>
+                    <div class="inputBox">
+                        <span>zip code :</span>
+                        <input type="text" placeholder="800001">
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="col">
+
+                <h3 class="title">payment</h3>
+
+          
+                <div class="inputBox">
+                    <span>name on card :</span>
+                    <input type="text" placeholder="JAMAL IBRAHIM UMAR">
+                </div>
+                <div class="inputBox">
+                    <span>credit card number :</span>
+                    <input type="number" placeholder="1111-2222-3333-4444">
+                </div>
+                <div class="inputBox">
+                    <span>exp month :</span>
+                    <input type="text" placeholder="january">
+                </div>
+
+                <div class="payflex">
+                    <div class="inputBox">
+                        <span>exp year :</span>
+                        <input type="number" placeholder="2022">
+                    </div>
+                    <div class="inputBox">
+                        <span>CVV :</span>
+                        <input type="text" placeholder="1234">
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+        <input type="submit" value="proceed to checkout" class="submit-btn">
+
+    </form>
+
+</div>
+     <%- include("../partials/nav.ejs") %>
+      </div>
+    </div>
+  <</body>
+</html>

@@ -1,6 +1,7 @@
-import { Schema, model } from "mongoose";
+const mongoose = require("mongoose")
 
-const itemSchema = Schema({
+
+const itemSchema = mongoose.Schema({
   name: {
     type: String,
     required: true
@@ -28,6 +29,6 @@ const itemSchema = Schema({
 
 })
 
-const Item = model("Item", itemSchema);
+const Item = mongoose.model("Item", itemSchema);
 
-export { Item };
+module.exports = Item;

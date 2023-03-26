@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<%- include("../partials/header.ejs") %>
+
+  <body>
+    <div class="container">
+      <div class="device">
+        <%- include("../partials/greeting.ejs") %>
+
+          <div class="videobox">
+            <div class="wrapper">
+              <h3>SIGN UP BELOW</h3>
+              <% if(messages.error) { %>
+                <% messages.error %>
+                  <% } %>
+            </div>
+          </div>
+
+          <div class="formcontainer">
+            <div class="forms-container">
+              <div class="signin-signup">
+                <form action="/register" method="POST" class="sign-in-form forms">
+
+                  <div class="input-field">
+                    <i class="fas fa-user"></i>
+                    <input type="text" placeholder="First name" name="first_name" required />
+                  </div>
+                  <div class="input-field">
+                    <i class="fas fa-user"></i>
+                    <input type="text" placeholder="Last name" name="last_name" required />
+                  </div>
+                  <div class="input-field">
+                    <i class="fas fa-user"></i>
+                    <input type="text" placeholder="Username" name="username" id="username" required />
+                  </div>
+                  <div class="input-field">
+                    <i class="fas fa-user"></i>
+                    <input type="number" placeholder="Phone Number" name="phone_number" />
+                  </div>
+                  <div class="input-field">
+                    <i class="fas fa-user"></i>
+                    <input type="text" placeholder="Address" name="address" />
+                  </div>
+                  <div class="input-field">
+                    <i class="fas fa-user"></i>
+                    <input type="password" placeholder="Password" name="password" />
+                  </div>
+                  <div class="input-field">
+                    <i class="fas fa-user"></i>
+                    <input type="password" placeholder="Re-enter Password" name="password2" />
+                  </div>
+                  <input type="submit" value="Sign Up" class="button solid" />
+                  <p class="social-text">Already Signed Up? <a href="/login">Login</a> instead</p>
+
+                  <p class="social-text">Or Sign in with social platforms</p>
+                  <div class="social-media">
+                    <a href="#" class="social-icon">
+                      <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a href="#" class="social-icon">
+                      <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href="#" class="social-icon">
+                      <i class="fab fa-google"></i>
+                    </a>
+                    <a href="#" class="social-icon">
+                      <i class="fab fa-linkedin-in"></i>
+                    </a>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+          <%- include("../partials/nav.ejs") %>
+      </div>
+    </div>
+  </body>
+
+</html>

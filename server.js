@@ -1,9 +1,10 @@
-require("dotenv").config()
+const dotenv = require("dotenv");
+dotenv.config();
 const express = require("express")
 const morgan = require("morgan")
 const mongoose = require("mongoose")
 const redisClient = require("./redis_manager")
-const session = require("cookie-session")
+const session = require("express-session")
 const flash = require("express-flash")
 const passport = require("passport")
 const connectEnsureLogin = require("connect-ensure-login")

@@ -1,3 +1,6 @@
+// USED EJS FOR THE FRONTEND
+
+
 const dotenv = require("dotenv");
 dotenv.config();
 const express = require("express")

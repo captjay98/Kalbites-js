@@ -1,111 +1,97 @@
-const User = require("../models/user.js")
-const Order = require("../models/order.js")
-const bcrypt = require("bcrypt")
-const passport = require("passport")
-const LocalStrategy = require('passport-local').Strategy;
-const initializePassport = require("../passportConfig");
-const connectEnsureLogin = require("connect-ensure-login")
+import User from "../models/user.js";
+import Order from "../models/order.js";
+import dotenv from "dotenv";
+dotenv.config();
+import jwt from "jsonwebtoken";
+import bcrypt from "bcrypt";
+import { registerSchema, loginSchema } from "../middlewares/validators.js";
+const secret = "HelloWorld55";
 
-
-initializePassport(
-  passport,
-  phone => User.findOne({ phone: phone }),
-  id => User.findById(id)
-)
-
-
-passport.initialize()
-passport.session()
-
-// const login_index = (notAuth, (req, res) => {
-
-//   res.render("user/login", { title: "Login" });
-// })
-
-
-// const login_index_post = (notAuth, (req, res) => {
-//   passport.authenticate("local", {
-//     successRedirect: "/user/account",
-//     failureRedirect: "/login",
-//     failureFlash: true,
-//   })
-//   console.log(req.body.phone)
-//   console.log(req.body.password)
-//   res.render("user/login", { title: "Login" });
-// })
-
-
-// res.render("user/login", { title: "Login" });
-// const login_index_post = (passport.authenticate('local',
-//   {
-//     failureRedirect: '/',
-//     successRedirect: "user/account",
-//   }),
-//   (req, res) => {
-//     connectEnsureLogin
-//     console.log(req.user)
-//     res.redirect('user/account');
-//   });
-
-
-const register_Index = (notAuth, (req, res) => {
-  res.render("user/register", { title: "Registration" });
-})
-
-
-const register_Index_post = (notAuth, async (req, res) => {
-
+export const userRegistration = async (req, res) => {
   try {
-    const HashedPword = await bcrypt.hash(req.body.password, 10);
-    const user = await new User({
-      first: req.body.first_name,
-      last: req.body.last_name,
-      phone: req.body.phone_number,
-      address: req.body.address,
-      password: HashedPword,
-    }).save()
-    console.log(user)
-    return res.redirect("/")
+    const { error } = registerSchema.validate(req.body);
+    if (error) {
+      return res.status(422).json({ errors: error.details });
+    }
 
-  } catch (err) {
-    console.log(err)
-    return res.redirect("user/register")
+    const { firstName, lastName, userName, email, phone, address, password, account_type } =
+      req.body;
+
+    const emailExists = await User.findOne({ email });
+    const usernameExists = await User.findOne({ userName });
+    const phoneExists = await User.findOne({ phone });
+
+    if (emailExists) {
+      return res.status(400).json({ message: "Email already exists" });
+    }
+    if (usernameExists) {
+      return res.status(400).json({ message: "Username already exists" });
+    }
+    if (phoneExists) {
+      return res.status(400).json({ message: "Phone already exists" });
+    }
+
+    const saltRounds = 10;
+    const hashedPassword = await bcrypt.hash(password, saltRounds);
+
+    const user = await User.create({
+      firstName,
+      lastName,
+      userName,
+      email,
+      phone,
+      address,
+      password: hashedPassword,
+      account_type,
+    }).select("-password");
+
+    const token = jwt.sign({ userId: user._id }, secret);
+    return res.status(201).json({ user, token });
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ message: "Server error" });
   }
-  res.render("user/register", { title: "Registration" });
-})
+};
 
-const profile_index = (connectEnsureLogin.ensureLoggedIn(), (req, res) => {
-  console.log(req.username, req.sessionID, req.session.cookie.maxAge)
-  res.render("user/account", { title: "Account Page" });
-})
+export const userLogin = async (req, res) => {
+  try {
+    const { error } = loginSchema.validate(req.body);
+    if (error) {
+      return res.status(422).json({ errors: error.details });
+    }
 
+    const { userName, password } = req.body;
 
-const logout_index = (req, res, next) => {
-  req.logout()
-  res.redirect("user/login")
-}
+    const user = await User.findOne({ userName });
+    if (!user) {
+      return res.status(401).json({ message: "Invalid UserName" });
+    }
 
+    const validPassword = await bcrypt.compare(password, user.password);
+    if (!validPassword) {
+      return res.status(401).json({ message: "Invalid Password" });
+    }
 
-function checkhAuth(req, res, next) {
-  if (req.isAuthenticated()) {
-    return next()
+    const token = jwt.sign({ userId: user._id }, secret);
+    return res.status(200).json({ user, token });
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ message: "Server error" });
   }
-  res.redirect("/user/login")
-}
+};
 
-
-function notAuth(req, res, next) {
-  if (req.isAuthenticated()) {
-    return res.redirect("/")
+export const userProfile = async (req, res) => {
+  try {
+    const user = await User.findById(req.user).select("-password");
+    console.log(user);
+    return res.status(200).json({ user });
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({ message: "Server Error" });
   }
-  next()
-}
+};
 
-
-
-module.exports = {
-  register_Index,
-  profile_index,
-  register_Index_post,
-  logout_index
-}
+export const userLogout = (req, res, next) => {
+  req.logout();
+  res.redirect("user/login");
+};

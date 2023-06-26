@@ -1,97 +1,117 @@
-const Item = require("../models/item");
-const Order = require("../models/order")
-const User = require("../models/user")
-const redisClient = require("../redis_manager")
+import Item from "../models/item.js";
+import Order from "../models/order.js";
+import User from "../models/user.js";
+import redisClient from "../middlewares/redisManager.js";
 
+export const orderDetails = async (req, res) => {
+  const userId = req.user;
+  const redisKey = `itemid:${userId}`;
 
-const cake_index = async (req, res) => {
+  const itemId = await redisClient.get(redisKey);
+  console.log("Item id", itemId);
+
   try {
-    const item = await Item.find({ name: "cake" })
-    res.render("items/cakes", { title: "Cakes", items: item })
-    console.log(item)
-  } catch (err) {
-    res.status(404).render("404", { title: "Chop Not Found" })
+    const user = await User.findById(userId);
+    const item = await Item.findById(itemId);
+
+    if (!user || !item) {
+      return res.status(404).json({ message: "User or item not found" });
+    }
+
+    const order = await new Order({
+      buyer: user,
+      item: item,
+    }).save();
+
+    console.log(order);
+
+    return res.status(200).json({ order });
+  } catch (error) {
+    console.log(error);
+    res.status(501).json({ message: "Server Error" });
   }
-}
+};
 
-const cake_detail = async (req, res) => {
-  const id = req.params.id
-  redisClient.set('itemid', id, (err, reply) => {
-    console.log(reply)
-  })
+export const getItem = async (req, res) => {
+  const userId = req.user;
+  const itemId = req.params.id;
+  const redisKey = `itemid:${userId}`;
+  console.log(userId, itemId, redisKey);
 
-  console.log(id)
+  redisClient.set(redisKey, itemId, (err, reply) => {
+    if (err) {
+      console.error(err);
+      return res.status(500).json({ message: "Error storing item ID in Redis" });
+    }
+    console.log(reply);
+  });
+
+  console.log(itemId);
   try {
-    const item = await Item.findById(id)
-    res.render("items/pay", { item: item, title: "Checkout" })
-  } catch (err) {
-    res.status(404).render("404", { title: "Item not found" })
-    console.log(err)
+    const item = await Item.findById(itemId);
+    return res.status(200).json({ item });
+  } catch (error) {
+    console.log(error);
+    res.status(501).json({ message: "Server Error" });
   }
-}
-
-
-const muffins_index = async (req, res) => {
+};
+export const getCakes = async (req, res) => {
   try {
-    const item = await Item.find({ name: "muffins" })
-    res.render("items/muffins", { title: "Muffins", items: item })
-    console.log(item)
-  } catch (err) {
-    res.status(404).render("404", { title: "Chop Not Found" })
+    const item = await Item.find({ name: "cake" });
+    console.log(item);
+    return res.status(200).json({ item });
+  } catch (error) {
+    console.log(error);
+    res.status(501).json({ message: "Server Error" });
   }
-}
+};
 
-
-const cookies_index = async (req, res) => {
+export const getMuffins = async (req, res) => {
   try {
-    const item = await Item.find({ name: "cookies" })
-    res.render("items/cookies", { title: "Cookies", items: item });
-    console.log(item)
-  } catch (err) {
-    res.status(404).render("404", { title: "Chop Not Found" })
+    const item = await Item.find({ name: "Muffins" });
+    return res.status(200).json({ item });
+  } catch (error) {
+    console.log(error);
+    res.status(501).json({ message: "Server Error" });
   }
-}
+};
 
-
-const rolls_index = async (req, res) => {
+export const getCookies = async (req, res) => {
   try {
-    const item = await Item.find({ name: "rolls" })
-    res.render("items/rolls", { title: "Swiss Rolls", items: item });
-    console.log(item)
-  } catch (err) {
-    res.status(404).render("404", { title: "Chop Not Found" })
+    const item = await Item.find({ name: "cookies" });
+    return res.status(200).json({ item });
+  } catch (error) {
+    console.log(error);
+    res.status(501).json({ message: "Server Error" });
   }
-}
+};
 
-
-const cups_index = async (req, res) => {
+export const getRolls = async (req, res) => {
   try {
-    const item = await Item.find({ name: "cups" })
-    res.render("items/cups", { title: "Cup Cakes", items: item });
-    console.log(item)
-  } catch (err) {
-    res.status(404).render("404", { title: "Chop Not Found" })
+    const item = await Item.find({ name: "rolls" });
+    return res.status(200).json({ item });
+  } catch (error) {
+    console.log(error);
+    res.status(501).json({ message: "Server Error" });
   }
-}
+};
 
-
-const brownies_index = async (req, res) => {
+export const getCups = async (req, res) => {
   try {
-    const item = await Item.find({ name: "brownies" })
-    res.render("items/brownies", { title: "Brownies", items: item });
-    console.log(item)
-  } catch (err) {
-    res.status(404).render("404", { title: "Chop Not Found" })
+    const item = await Item.find({ name: "cups" });
+    return res.status(200).json({ item });
+  } catch (error) {
+    console.log(error);
+    res.status(501).json({ message: "Server Error" });
   }
-}
+};
 
-
-module.exports = {
-  cake_index,
-  cake_detail,
-  muffins_index,
-  cookies_index,
-  rolls_index,
-  cups_index,
-  brownies_index,
-}
+export const getBrownies = async (req, res) => {
+  try {
+    const item = await Item.find({ name: "brownies" });
+    return res.status(200).json({ item });
+  } catch (error) {
+    console.log(error);
+    res.status(501).json({ message: "Server Error" });
+  }
+};

@@ -1,58 +1,46 @@
-const Blog = require("../models/blog");
+import Blog from "../models/blog.js";
 
-const blog_index = async (req, res) => {
+export const getBlogs = async (req, res) => {
   try {
-    const blogs = await Blog.find().sort({ createdAt: -1 })
-
-    res.render("blogs/blogs", { title: "All Blogs", blogs: blogs })
+    const blogs = await Blog.find().sort({ createdAt: -1 });
+    return res.status(200).json({ blogs });
   } catch (err) {
-
     console.log(err);
+    return res.status(500).json({ message: "Server Error" });
   }
-}
+};
 
 // i don't know wy this isn't woring but i intend to find out
 
-const blog_details = (req, res) => {
-  const id = req.params.id;
+export const getBlog = async (req, res) => {
+  const id = req.params.id.toString();
   console.log(id);
-  Blog.findById(id)
-    .then((result) => {
-      res.render("blogs/details", { blog: result, title: "Blog Details" });
-    })
-    .catch((err) => {
-      res.status(404).render("404", { title: "Blog Not Found" });
-    })
-}
+  try {
+    const blog = await Blog.findById(id);
+    return res.status(200).json({ blog });
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({ message: "Server Error" });
+  }
+};
 
-const blog_create_get = (req, res) => {
-  res.render("blogs/create", { title: "Create New Blog" });
-}
+export const createBlog = async (req, res) => {
+  try {
+    const blog = await Blog.create(req.body);
+    return res.status(200).json({ blog });
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({ message: "Server Error" });
+  }
+};
 
-const blog_create_post = (req, res) => {
-  const blog = new Blog(req.body);
-  blog.save()
-    .then((result) => {
-      res.redirect("blogs")
-    })
-    .catch((err) => console.log(err));
-}
-
-const blog_delete = (req, res) => {
+export const deleteBlog = async (req, res) => {
   const id = req.params.id;
-  Blog.findByIdAndDelete(id)
-    .then((result) => {
-      res.json({ redirect: "blogs" })
-    })
-    .catch((err) => {
-      console.log(err);
-    })
-}
-
-module.exports = {
-  blog_index,
-  blog_details,
-  blog_create_get,
-  blog_create_post,
-  blog_delete
-}
+  try {
+    await Blog.findByIdAndDelete(id);
+    return res.status(200).json({ message: "Blog Deleted" });
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({ message: "Server Error" });
+  }
+};

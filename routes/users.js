@@ -1,16 +1,17 @@
-const express = require("express")
-const userController = require("../controllers/userController")
+import express from "express";
+import {
+  userRegistration,
+  userLogin,
+  userProfile,
+  userLogout,
+} from "../controllers/userController.js";
+import { getCurrentUser } from "../middlewares/auth.js";
 
-const urouter = express.Router();
+const uRouter = express.Router();
 
+uRouter.post("/login", userLogin);
+uRouter.post("/register", userRegistration);
+uRouter.get("/account", getCurrentUser, userProfile);
+uRouter.delete("/logout", getCurrentUser, userLogout);
 
-urouter.get("/login", userController.login_index);
-urouter.get("/register", userController.register_Index);
-urouter.post("/login", userController.login_index_post);
-urouter.post("/register", userController.register_Index_post);
-urouter.get("/account", userController.profile_index);
-urouter.delete("/logout", userController.logout_index)
-// urouter.patch();
-// urouter.delete();
-
-module.exports = urouter;
+export default uRouter;

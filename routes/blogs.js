@@ -1,13 +1,12 @@
-const express = require("express")
+import express from "express";
 
-const blogController = require("../controllers/blogController")
+import { getBlogs, getBlog, createBlog, deleteBlog } from "../controllers/blogController.js";
 
-const brouter = express.Router();
+const bRouter = express.Router();
 
-brouter.get("/", blogController.blog_index)
-brouter.post("/", blogController.blog_create_post);
-brouter.get("/create", blogController.blog_create_get)
-brouter.get("/:id", blogController.blog_details);
-brouter.delete("/:id", blogController.blog_delete)
+bRouter.get("/", getBlogs);
+bRouter.get("/:id", getBlog);
+bRouter.post("/create", createBlog);
+bRouter.delete("/:id", deleteBlog);
 
-module.exports = brouter;
+export default bRouter;

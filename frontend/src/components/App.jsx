@@ -12,6 +12,7 @@ import SwissRolls from "./SwissRolls";
 import Item from "./item";
 import Payment from "./Payment";
 import Confirmation from "./Confirmation";
+import BlogPost from "./BlogPost";
 import "../index.css";
 
 const App = () => {
@@ -22,6 +23,7 @@ const App = () => {
         <Routes>
           <Route exact path="/" element={<HomePage />} />
           <Route path="/blogs" element={<Blog />} />
+          <Route path="/blogs/:id" element={<BlogPost />} />
           <Route path="/account" element={<Account />} />
           <Route path="/Brownies" element={<Brownies />} />
           <Route path="/BentoCakes" element={<BentoCakes />} />
@@ -31,6 +33,7 @@ const App = () => {
           <Route path="/:category/:itemId" element={<Item />} />
           <Route path="/:category/:itemId/payment" element={<Payment />} />
           <Route path="/confirmation" element={<Confirmation />} />
+          <Route path="/blog/:id" element={<BlogPost />} />
         </Routes>
         <NavBar />
       </div>

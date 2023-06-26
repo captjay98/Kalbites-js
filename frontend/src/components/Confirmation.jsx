@@ -17,7 +17,6 @@ const Confirmation = () => {
     }
   }, [showReceipt]);
 
-  // Sample data for the receipt details
   const receiptData = {
     customerName: "John Doe",
     customerPhone: "123-456-7890",
@@ -28,23 +27,21 @@ const Confirmation = () => {
   };
 
   return (
-    <div className="h-screen">
+    <div className="h-screen overflow-auto">
       <InfoBar description={description} />
 
-      <div className="border-4 border-yellow-500 rounded-full w-11/12 m-auto mt-5 w-90 h-5"></div>
+      <div className="border-4 border-yellow-500 rounded-full w-11/12 m-auto mt-5 h-5"></div>
 
       <div className="overflow-hidden pb-0">
         {showReceipt && (
           <div
             ref={receiptRef}
-            className="flex s-center flex-col translate-y-[-510px] opacity-0"
+            className="translate-y-[-510px] opacity-0"
             style={{
               transition: "transform 1s ease-in-out, opacity 1s ease-in-out",
-              width: "400px",
-              height: "800px",
             }}
           >
-            <div className="p-8 ml-7 text-left w-11/12  bg-yellow-500 rounded-bl-3xl rounded-br-3xl shadow-lg">
+            <div className="p-8 text-left w-72 m-auto bg-yellow-500 rounded-bl-3xl rounded-br-3xl shadow-lg">
               <div className=" flex flex-col py-3  ">
                 <h3> Customer Name: </h3>
                 <span className="text-sm font-medium text-gray-700">

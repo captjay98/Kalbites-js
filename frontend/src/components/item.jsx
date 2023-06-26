@@ -1,8 +1,10 @@
 import React from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import InfoBar from "./InfoBar";
 
-const Item = ({ category, itemId }) => {
+const Item = () => {
+  const { category, itemId } = useParams();
+  console.log(category, itemId);
   let itemName = "";
   let itemImagePath = "";
   let itemPriceLabel = "";
@@ -10,29 +12,29 @@ const Item = ({ category, itemId }) => {
   // Item details based on the category
   switch (category) {
     case "Brownies":
-      itemName = "Brownie";
+      itemName = "Brownies";
       itemImagePath = "/images/brownies.jpg";
-      itemPriceLabel = "Brownie Price";
+      itemPriceLabel = "5555";
       break;
     case "BentoCakes":
       itemName = "Bento Cake";
       itemImagePath = "/images/bentocake.jpg";
-      itemPriceLabel = "Bento Cake Price";
+      itemPriceLabel = "7777";
       break;
     case "CupCakes":
       itemName = "Cupcake";
       itemImagePath = "/images/cupcakes.jpg";
-      itemPriceLabel = "Cupcake Price";
+      itemPriceLabel = "8888";
       break;
     case "Muffins":
       itemName = "Muffin";
       itemImagePath = "/images/muffins.jpg";
-      itemPriceLabel = "Muffin Price";
+      itemPriceLabel = "9999";
       break;
     case "SwissRolls":
       itemName = "Swiss Roll";
       itemImagePath = "/images/swissrolls.jpg";
-      itemPriceLabel = "Swiss Roll Price";
+      itemPriceLabel = "1111";
       break;
     default:
       break;
@@ -41,7 +43,7 @@ const Item = ({ category, itemId }) => {
   const navigate = useNavigate(); // Hook for navigation
 
   // Dummy ID
-  const dummyId = "12345";
+  // const dummyId = "12345";
 
   const handlePaymentClick = () => {
     navigate(`/${category}/${itemId}/payment`); // Navigate to the payment page

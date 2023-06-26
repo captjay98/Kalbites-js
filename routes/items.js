@@ -1,16 +1,25 @@
-const express = require("express");
-const itemController = require("../controllers/itemController")
+import express from "express";
+import { getCurrentUser } from "../middlewares/auth.js";
+import {
+  getCakes,
+  getCookies,
+  getCups,
+  getMuffins,
+  getBrownies,
+  getRolls,
+  getItem,
+  orderDetails,
+} from "../controllers/itemController.js";
 
-const irouter = express.Router();
+const iRouter = express.Router();
 
-irouter.get("/cakes", itemController.cake_index);
-irouter.get("/cakes/:id", itemController.cake_detail)
-irouter.get("/muffins", itemController.muffins_index);
-irouter.get("/cookies", itemController.cookies_index)
-irouter.get("/rolls", itemController.rolls_index);
-irouter.get("/cups", itemController.cups_index);
-irouter.get("/brownies", itemController.brownies_index);
-// router.patch();
-// router.delete();
-// order_index, 
-module.exports = irouter;
+iRouter.get("/cakes", getCakes);
+iRouter.get("/muffins", getMuffins);
+iRouter.get("/cookies", getCookies);
+iRouter.get("/rolls", getRolls);
+iRouter.get("/cups", getCups);
+iRouter.get("/brownies", getBrownies);
+iRouter.get("/:item/:id", getCurrentUser, getItem);
+iRouter.post("/order", getCurrentUser, orderDetails);
+
+export default iRouter;

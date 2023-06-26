@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom";
-
 import InfoBar from "./InfoBar";
 
 const BentoCakes = () => {

@@ -1,5 +1,5 @@
 // USED REACT FOR THE FRONTEND
-
+import cors from "cors";
 import dotenv from "dotenv";
 dotenv.config();
 import express from "express";
@@ -15,9 +15,16 @@ import redisClient from "./middlewares/redisManager.js";
 const app = express();
 
 app.use(morgan("dev"));
-app.use(express.static("public"));
 app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: false }));
+
+const corsOptions = {
+  origin: ["http://localhost:5173"], // Add the allowed origins here
+  methods: ["GET", "POST"], // Add the allowed HTTP methods here
+  allowedHeaders: ["Content-Type", "Authorization"], // Add the allowed headers here
+};
+
+app.use(cors(corsOptions));
 
 dbConnect().then(() => {
   redisClient.connect();
@@ -37,15 +44,3 @@ app.use((req, res, next) => {
   res.status(404).json({ message: "Page not Found" });
   next();
 });
-
-// const items = [
-//   { title: "cake", price: 5000 },
-//   { title: "Parfait", price: 2000 },
-//   { ttle: "brownie", price: 3000 }
-// ]
-
-// const blogs = [
-//   { title: "Number 1 Crackhead Ninja", snippet: "Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint cillum sint consectetur cupidatat." },
-//   { title: "Number 1 legendary Sanin", snippet: "Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint cillum sint consectetur cupidatat." },
-//   { title: "The greatest Uchiha shinobi", snippet: "Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint cillum sint consectetur cupidatat." }
-// ];

@@ -14,19 +14,10 @@ export const userRegistration = async (req, res) => {
       return res.status(422).json({ errors: error.details });
     }
 
-    const { firstName, lastName, userName, email, phone, address, password, account_type } =
-      req.body;
+    const { firstName, lastName, phone, address, password, account_type } = req.body;
 
-    const emailExists = await User.findOne({ email });
-    const usernameExists = await User.findOne({ userName });
     const phoneExists = await User.findOne({ phone });
 
-    if (emailExists) {
-      return res.status(400).json({ message: "Email already exists" });
-    }
-    if (usernameExists) {
-      return res.status(400).json({ message: "Username already exists" });
-    }
     if (phoneExists) {
       return res.status(400).json({ message: "Phone already exists" });
     }
@@ -37,13 +28,11 @@ export const userRegistration = async (req, res) => {
     const user = await User.create({
       firstName,
       lastName,
-      userName,
-      email,
       phone,
       address,
       password: hashedPassword,
       account_type,
-    }).select("-password");
+    });
 
     const token = jwt.sign({ userId: user._id }, secret);
     return res.status(201).json({ user, token });

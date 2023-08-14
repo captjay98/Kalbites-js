@@ -5,7 +5,16 @@ import Order from "../models/order.js";
 export const createItem = async (req, res) => {
   try {
     const { name, price, quantity, size, available } = req.body;
-    const newItem = await Item.create({ name, price, quantity, size, available });
+    const imagePath = req.file.path;
+    console.log(req.body, imagePath);
+    const newItem = await Item.create({
+      name,
+      image: imagePath,
+      price,
+      quantity,
+      size,
+      available,
+    });
     return res.status(201).json({ newItem });
   } catch (error) {
     console.log(error);

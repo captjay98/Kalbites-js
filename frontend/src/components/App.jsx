@@ -13,12 +13,14 @@ import Item from "./item";
 import Payment from "./Payment";
 import Confirmation from "./Confirmation";
 import BlogPost from "./BlogPost";
+import Register from "./Register";
+import Login from "./Login";
 import "../index.css";
 
 const App = () => {
   return (
     <Router>
-      <div className="w-screen  bg-myBlue text-gold font-sans">
+      <div className="w-screen bg-myBlue text-gold font-sans">
         <Header />
         <Routes>
           <Route exact path="/" element={<HomePage />} />
@@ -34,6 +36,8 @@ const App = () => {
           <Route path="/:category/:itemId/payment" element={<Payment />} />
           <Route path="/confirmation" element={<Confirmation />} />
           <Route path="/blog/:id" element={<BlogPost />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/login" element={<Login />} />
         </Routes>
         <NavBar />
       </div>

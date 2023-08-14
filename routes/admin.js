@@ -6,10 +6,11 @@ import {
   getItems,
   getOrders,
 } from "../controllers/adminController.js";
+import upload from "../middlewares/multer.js";
 
 const aRouter = express.Router();
 
-aRouter.post("/create", createItem);
+aRouter.post("/create", upload.single("image"), createItem);
 aRouter.get("/users", getUsers);
 aRouter.get("/users/:id", getUser);
 aRouter.get("/items", getItems);

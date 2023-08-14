@@ -36,7 +36,7 @@ export const getItem = async (req, res) => {
   const userId = req.user;
   const itemId = req.params.id;
   const redisKey = `itemid:${userId}`;
-  console.log(userId, itemId, redisKey);
+  console.log("USER:", userId, "ITEM:", itemId, "REDIS:", redisKey);
 
   redisClient.set(redisKey, itemId, (err, reply) => {
     if (err) {
@@ -55,6 +55,7 @@ export const getItem = async (req, res) => {
     res.status(501).json({ message: "Server Error" });
   }
 };
+
 export const getCakes = async (req, res) => {
   try {
     const item = await Item.find({ name: "cake" });
@@ -108,7 +109,7 @@ export const getCups = async (req, res) => {
 
 export const getBrownies = async (req, res) => {
   try {
-    const item = await Item.find({ name: "brownies" });
+    const item = await Item.find({ name: "brownie" });
     return res.status(200).json({ item });
   } catch (error) {
     console.log(error);

@@ -49,9 +49,9 @@ export const userLogin = async (req, res) => {
       return res.status(422).json({ errors: error.details });
     }
 
-    const { userName, password } = req.body;
+    const { phone, password } = req.body;
 
-    const user = await User.findOne({ userName });
+    const user = await User.findOne({ phone });
     if (!user) {
       return res.status(401).json({ message: "Invalid UserName" });
     }
@@ -71,6 +71,7 @@ export const userLogin = async (req, res) => {
 
 export const userProfile = async (req, res) => {
   try {
+    console.log(req.user);
     const user = await User.findById(req.user).select("-password");
     console.log(user);
     return res.status(200).json({ user });

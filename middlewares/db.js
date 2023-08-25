@@ -1,13 +1,12 @@
-// dbMiddleware.js
 import mongoose from "mongoose";
 import dotenv from "dotenv";
 dotenv.config();
 
 const dbConnect = async () => {
+  const dbURI = process.env.DB_URI;
+  console.log(dbURI);
   try {
-    // const dbURI = "mongodb+srv://noder:noder@nodeinterview.xbadjti.mongodb.net/?retryWrites=true&w=majority";
-    const dbURI =
-      "mongodb+srv://noder:noder@cluster0.xbadjti.mongodb.net/kalbites?retryWrites=true&w=majority";
+    // "mongodb+srv://noder:noder@cluster0.xbadjti.mongodb.net/kalbites?retryWrites=true&w=majority";
 
     await mongoose.connect(dbURI, {
       useNewUrlParser: true,

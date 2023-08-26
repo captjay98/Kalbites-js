@@ -2,10 +2,7 @@ import { Link } from "react-router-dom";
 import React, { useState, useEffect } from "react";
 import InfoBar from "./InfoBar";
 import axios from "axios";
-
-const axiosInstance = axios.create({
-  baseURL: "http://localhost:3333",
-});
+import axiosInstance from "../../axiosInstance";
 
 const Brownies = () => {
   const description = "Check out our fluffy Brownies";

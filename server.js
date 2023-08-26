@@ -19,9 +19,9 @@ app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
 const corsOptions = {
-  origin: ["http://localhost:5173"], // Add the allowed origins here
-  methods: ["GET", "POST"], // Add the allowed HTTP methods here
-  allowedHeaders: ["Content-Type", "Authorization"], // Add the allowed headers here
+  origin: ["http://localhost:5173", "https://kalbites-js-production.up.railway.app"],
+  methods: ["GET", "POST"],
+  allowedHeaders: ["Content-Type", "Authorization"],
 };
 
 app.use(cors(corsOptions));

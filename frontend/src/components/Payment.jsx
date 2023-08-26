@@ -1,14 +1,21 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import InfoBar from "./InfoBar";
+import axiosInstance from "../../axiosInstance";
 
 const Payment = () => {
   const navigate = useNavigate();
   const description = "Make Your payment to confirm Order";
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
 
+    try {
+      const pay = await axiosInstance.post("/items/order");
+      console.log("Order Created", pay);
+    } catch (error) {
+      console.log(error);
+    }
     navigate("/confirmation");
   };
   return (
@@ -35,7 +42,7 @@ const Payment = () => {
               type="number"
               id="creditCardNumber"
               placeholder="1111-2222-3333-4444"
-              className="rounded-3xl border border-yellow-500  bg-myBlue  bg-myBlue px-3 py-2 w-full text-yellow-500"
+              className="rounded-3xl border border-yellow-500 bg-myBlue px-3 py-2 w-full text-yellow-500"
             />
           </div>
           <div className="mb-4">

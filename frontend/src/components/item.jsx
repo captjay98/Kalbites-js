@@ -32,6 +32,7 @@ const Item = () => {
   return (
     <div className="h-screen">
       <InfoBar />
+      {/* Chec if a user is logged in before navigating to the payment page */}
       <div className="m-auto mt-5 px-2 py-5 mb-5 pb-5  w-11/12 rounded-3xl">
         <div className="overflow-auto flex flex-wrap  mb-5 pb-5 ">
           <h3 className="text-center mt-5 mb-5 pt-2 pb-2 text-yellow-500 text-bold">{category}</h3>

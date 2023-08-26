@@ -9,6 +9,7 @@ import {
   getRolls,
   getItem,
   orderDetails,
+  getOrder,
 } from "../controllers/itemController.js";
 
 const iRouter = express.Router();
@@ -21,5 +22,6 @@ iRouter.get("/cups", getCups);
 iRouter.get("/brownies", getBrownies);
 iRouter.get("/:item/:id", getCurrentUser, getItem);
 iRouter.post("/order", getCurrentUser, orderDetails);
+iRouter.get("/order", getCurrentUser, getOrder);
 
 export default iRouter;

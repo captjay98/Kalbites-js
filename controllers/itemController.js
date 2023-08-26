@@ -32,6 +32,20 @@ export const orderDetails = async (req, res) => {
   }
 };
 
+export const getOrder = async (req, res) => {
+  const userId = req.user;
+  try {
+    const order = await Order.findOne({ buyer: userId })
+      .sort({ _id: -1 })
+      .populate("buyer", "firstName lastName address phone")
+      .populate("item", "name price quantity size")
+      .exec();
+    return res.status(200).json({ order });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 export const getItem = async (req, res) => {
   const userId = req.user;
   const itemId = req.params.id;

@@ -14,17 +14,17 @@ import redisClient from "./middlewares/redisManager.js";
 
 const app = express();
 
-app.use(morgan("dev"));
-app.use(express.json());
-app.use(bodyParser.urlencoded({ extended: false }));
-
 const corsOptions = {
-  origin: ["http://localhost:5173", "https://kalbites.vercel.app/"],
+  origin: "*",
   methods: ["GET", "POST"],
   allowedHeaders: ["*"],
 };
 
 app.use(cors(corsOptions));
+
+app.use(morgan("dev"));
+app.use(express.json());
+app.use(bodyParser.urlencoded({ extended: false }));
 
 dbConnect().then(() => {
   redisClient.connect();

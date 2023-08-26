@@ -53,7 +53,7 @@ export const userLogin = async (req, res) => {
 
     const user = await User.findOne({ phone });
     if (!user) {
-      return res.status(401).json({ message: "Invalid UserName" });
+      return res.status(401).json({ message: "Incorrect Phone Number " });
     }
 
     const validPassword = await bcrypt.compare(password, user.password);

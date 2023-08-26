@@ -11,7 +11,7 @@ import bRouter from "./routes/blogs.js";
 import iRouter from "./routes/items.js";
 import aRouter from "./routes/admin.js";
 import redisClient from "./middlewares/redisManager.js";
-
+const port = process.env.PORT || 3000;
 const app = express();
 
 const corsOptions = {
@@ -28,7 +28,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 dbConnect().then(() => {
   redisClient.connect();
-  app.listen(3333, () => console.log("App running on Port 3333"));
+  app.listen(port, "0.0.0.0", () => console.log("App running on Port 3333"));
 });
 
 app.get("/", (req, res) => {

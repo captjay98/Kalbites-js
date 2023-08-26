@@ -12,34 +12,32 @@ const Brownies = () => {
 
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
+  const getData = async () => {
+    try {
+      const response = await axiosInstance.get("/items/brownies/");
+      console.log("Fetched data:", response.data.item);
+      setData(response.data.item);
+      setLoading(false);
+    } catch (error) {
+      console.log("Error Fetching Data:", error);
+      setLoading(false);
+    }
+  };
 
   useEffect(() => {
-    const getData = async () => {
-      try {
-        const response = await axiosInstance.get("/items/brownies/");
-        console.log("Fetched data:", response.data.item);
-        setData(response.data.item);
-        setLoading(false); // Set loading to false after data is fetched
-      } catch (error) {
-        console.log("Error Fetching Data:", error);
-        setLoading(false); // Set loading to false even in case of an error
-      }
-    };
     console.log("Fetching data...");
     getData();
   }, []);
-
-  useEffect(() => {
-    console.log("Updated data:", data);
-  }, [data]);
 
   return (
     <div className="h-screen overflow-auto">
       <InfoBar description={description} />
       <div className="m-auto mt-5 mb-5 px-2 py-5 pb-5 w-11/12 rounded-3xl">
-        {loading ? ( // Render a loading state while data is being fetched
-          <p>Loading...</p>
-        ) : data.length > 0 ? ( // Render the data if available
+        {loading ? (
+          <div className="absolute right-1/2 bottom-1/2  transform translate-x-1/2 translate-y-1/2 ">
+            <div className="border-t-transparent border-solid animate-spin mt-24 rounded-full border-blue-400 border-8 h-16 w-16"></div>
+          </div>
+        ) : data.length > 0 ? (
           data.map((brownie) => (
             <div className="w-full pb-2 mb-3 p-1 h-64" key={brownie._id}>
               <Link to={`/Brownies/${brownie._id}`}>

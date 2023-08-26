@@ -1,11 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import InfoBar from "./InfoBar";
-import axios from "axios";
-
-const axiosInstance = axios.create({
-  baseURL: "http://localhost:3333",
-});
+import axiosInstance from "../../axiosInstance";
 
 const LoginForm = () => {
   const [user, LoginUser] = useState({

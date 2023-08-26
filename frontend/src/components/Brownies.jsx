@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
 import React, { useState, useEffect } from "react";
 import InfoBar from "./InfoBar";
-import axios from "axios";
 import axiosInstance from "../../axiosInstance";
 
 const Brownies = () => {
@@ -52,7 +51,7 @@ const Brownies = () => {
             </div>
           ))
         ) : (
-          <p>No brownies found.</p>
+          <p className="text-yellow-300 text-center py-16 px-16">No brownies found.</p>
         )}
       </div>
     </div>

@@ -51,7 +51,7 @@ const Cookies = () => {
             </div>
           ))
         ) : (
-          <p>No Cookies found.</p>
+          <p className="text-yellow-300 text-center py-16 px-16">No Cookies found.</p>
         )}
       </div>
     </div>

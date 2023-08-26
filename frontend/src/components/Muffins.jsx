@@ -51,7 +51,7 @@ const Muffins = () => {
             </div>
           ))
         ) : (
-          <p>No Muffins found.</p>
+          <p className="text-yellow-300 text-center py-16 px-16">No Muffins found.</p>
         )}
       </div>
     </div>

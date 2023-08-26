@@ -51,7 +51,7 @@ const SwissRolls = () => {
             </div>
           ))
         ) : (
-          <p>No SwissRolls found.</p>
+          <p className="text-yellow-300 text-center py-16 px-16">No SwissRolls found.</p>
         )}
       </div>
     </div>

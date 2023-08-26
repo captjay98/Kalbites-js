@@ -1,10 +1,12 @@
 import InfoBar from "./InfoBar";
+import { useNavigate } from "react-router-dom";
+
 import React, { useEffect, useState } from "react";
 import axiosInstance from "../../axiosInstance";
 
 const Account = () => {
   const description = "Profile";
-
+  const navigate = useNavigate();
   const [user, setUserDetails] = useState(null);
   const [loading, setLoading] = useState(true);
 
@@ -24,11 +26,7 @@ const Account = () => {
     getUserDetails();
   }, []);
 
-  // useEffect(() => {
-  //   console.log("User", user);
-  // }, [user]);
-
-  if (loading || !user) {
+  if (loading) {
     return (
       <div className="absolute right-1/2 bottom-1/2 bg-myBlue h-screen w-screen flex justify-evenly transform translate-x-1/2 translate-y-1/2 ">
         <div className="border-t-transparent border-solid animate-spin mt-24  rounded-full border-blue-400 border-8 h-16 w-16"></div>
@@ -40,10 +38,8 @@ const Account = () => {
     <div className="h-screen myBlue">
       <InfoBar description={description} />
       <div className="container mx-auto py-10">
-        {loading ? (
-          <div className="absolute right-1/2 bottom-1/2  transform translate-x-1/2 translate-y-1/2 ">
-            <div className="border-t-transparent border-solid animate-spin  rounded-full border-blue-400 border-8 h-16 w-16"></div>
-          </div>
+        {!user ? (
+          navigate("/login")
         ) : (
           <div className="max-w-md mx-auto bg-yellow-500 w-11/12  rounded-3xl shadow-md p-8">
             <h2 className="text-2xl font-bold text-myBlue mb-4">Customer Details</h2>

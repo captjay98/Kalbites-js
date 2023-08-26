@@ -42,13 +42,15 @@ const RegisterForm = () => {
       console.log("Error Response", error.response.data);
     }
   };
-
+  const redirectLogin = () => {
+    navigate("/login");
+  };
   const description = "Register Here";
   return (
     <>
       <InfoBar description={description} />
-      <div className="h-screen flex items-center justify-center">
-        <div className="w-11/12 max-w-sm mt-3 mb-5 rounded-2xl px-5 py-5 bg-yellow-500">
+      <div className="h-screen flex flex-wrap justify-center">
+        <div className="w-11/12 max-w-sm mt-6 rounded-2xl px-5 py-5 bg-yellow-500">
           {error && <div className="text-red-500 mb-2">{error}</div>}
           <form onSubmit={handleSubmit}>
             <div className="mb-1">
@@ -105,7 +107,7 @@ const RegisterForm = () => {
               </label>
               <input
                 className="appearance-none  rounded-3xl  w-full py-1 px-3 bg-myBlue text-gray-200 leading-tight focus:outline-none focus:shadow-outline"
-                type="text"
+                type="password"
                 name="password"
                 value={user.password}
                 onChange={handleChange}
@@ -117,7 +119,7 @@ const RegisterForm = () => {
               </label>
               <input
                 className="appearance-none rounded-3xl w-full py-1 px-3 bg-myBlue text-yellow-300 leading-tight focus:outline-none focus:shadow-outline"
-                type="text"
+                type="password"
                 name="rePassword"
                 value={user.rePassword}
                 onChange={handleChange}
@@ -125,13 +127,24 @@ const RegisterForm = () => {
             </div>
             <div className="flex justify-center">
               <button
-                className="bg-myBlue rounded-3xl hover:bg-blue-700 text-yellow-500 font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                className="bg-myBlue rounded-3xl hover:bg-blue-700 text-yellow-500 font-bold py-2 px-4 focus:outline-none focus:shadow-outline"
                 type="submit"
               >
                 Register
               </button>
             </div>{" "}
           </form>
+          {
+            <p className="text-white text-xs text-center my-2">
+              have an account?{" "}
+              <button onClick={redirectLogin} className="text-myBlue">
+                Login
+              </button>
+            </p>
+          }
+        </div>
+        <div>
+          <h3 className="text-myBlue mx-6 my-6">You're Welcome! </h3>
         </div>
       </div>
     </>

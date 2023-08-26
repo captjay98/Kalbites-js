@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom";
+import { redirect, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import InfoBar from "./InfoBar";
 import axiosInstance from "../../axiosInstance";
@@ -48,12 +48,16 @@ const LoginForm = () => {
     setLoading(false);
   };
 
+  const redirectReg = () => {
+    navigate("/register");
+  };
+
   const description = "Login Here";
   return (
     <>
       <InfoBar description={description} />
-      <div className="h-screen flex items-center justify-center">
-        <div className="w-11/12 max-w-sm mt-3 mb-5 rounded-2xl px-5 py-5 bg-yellow-500">
+      <div className="h-screen flex  justify-center">
+        <div className="w-11/12 h-72 max-w-sm mt-32 mb-5 rounded-2xl px-5 py-5 bg-yellow-500">
           <form onSubmit={handleSubmit}>
             <div className="mb-2">
               <label className="block text-myBlue  font-bold mb-1" htmlFor="phone">
@@ -81,7 +85,7 @@ const LoginForm = () => {
             </div>
             <div className="flex justify-center">
               <button
-                className="bg-myBlue rounded-3xl hover:bg-blue-700 text-yellow-500 font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                className="bg-myBlue rounded-3xl hover:bg-blue-700 text-yellow-500 font-bold py-2 px-4 focus:outline-none focus:shadow-outline"
                 type="submit"
                 disabled={loading}
               >
@@ -90,6 +94,14 @@ const LoginForm = () => {
             </div>
             {error && <p className="text-red-500 text-center">{error}</p>}{" "}
           </form>
+          {
+            <p className="text-white text-xs text-center my-2">
+              dont have an account?{" "}
+              <button onClick={redirectReg} className="text-myBlue">
+                register
+              </button>
+            </p>
+          }
         </div>
       </div>
     </>

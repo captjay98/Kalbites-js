@@ -14,18 +14,19 @@ const Item = () => {
     navigate(`/${category}/${itemId}/payment`);
   };
 
+  const fetchItemDetails = async () => {
+    try {
+      const response = await axiosInstance.get(`/items/${category.toLowerCase()}/${itemId}`);
+      console.log("Item", response.data);
+      setItemDetails(response.data.item);
+    } catch (error) {
+      console.log("Error Fetching Item Details:", error);
+    }
+  };
+
   useEffect(() => {
-    const fetchItemDetails = async () => {
-      try {
-        const response = await axiosInstance.get(`/items/${category.toLowerCase()}/${itemId}`);
-        console.log("Brownie:", response.data);
-        setItemDetails(response.data.item);
-      } catch (error) {
-        console.log("Error Fetching Item Details:", error);
-      }
-    };
     fetchItemDetails();
-    console.log("Item", itemDetails);
+    console.log(" Fetching Item...");
   }, [category, itemId]);
 
   return (
@@ -49,7 +50,7 @@ const Item = () => {
                   Quantity:{itemDetails.quantity}
                 </span>
                 <span className="absolute bottom-2 px-3 py-3 left-32 text-white">
-                  Size:{itemDetails.size}
+                  {/* Size:{itemDetails.size} */}
                 </span>
               </div>
             </button>

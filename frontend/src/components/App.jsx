@@ -1,9 +1,9 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Header from "./Header";
-import NavBar from "./NavBar";
 import HomePage from "./HomePage";
 import Blog from "./Blogs";
 import Account from "./Account";
+import MainLayout from "../Layouts/MainLayout";
 import Brownies from "./Brownies";
 import BentoCakes from "./BentoCakes";
 import CupCakes from "./CupCakes";
@@ -20,8 +20,7 @@ import "../index.css";
 const App = () => {
   return (
     <Router>
-      <div className="w-screen bg-myBlue text-gold font-sans">
-        <Header />
+      <MainLayout>
         <Routes>
           <Route exact path="/" element={<HomePage />} />
           <Route path="/blogs" element={<Blog />} />
@@ -39,8 +38,7 @@ const App = () => {
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
         </Routes>
-        <NavBar />
-      </div>
+      </MainLayout>
     </Router>
   );
 };

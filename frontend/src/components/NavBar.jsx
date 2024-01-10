@@ -9,12 +9,11 @@ const NavBar = () => {
   };
 
   return (
-    <div className="fixed bottom-0 w-full bg-yellow-500 px-2 py-1 rounded-tl-3xl rounded-tr-3xl">
-      <ul className="flex justify-between px-3 py-1 text-center text-myBlue">
+    <div className="sticky bottom-0 py-1 px-2 w-full bg-yellow-500 rounded-tl-3xl rounded-tr-3xl">
+      <ul className="flex justify-between py-1 px-3 text-center text-myBlue">
         <li
-          className={`flex-1 rounded-3xl ${
-            activeTab === "home" ? "bg-myBlue text-yellow-400" : ""
-          }`}
+          className={`flex-1 rounded-3xl ${activeTab === "home" ? "bg-myBlue text-yellow-400" : ""
+            }`}
           onClick={() => handleTabClick("home")}
         >
           <NavLink
@@ -26,9 +25,8 @@ const NavBar = () => {
           </NavLink>
         </li>
         <li
-          className={`flex-1 rounded-3xl   ${
-            activeTab === "blogs" ? "bg-myBlue text-yellow-400" : ""
-          }`}
+          className={`flex-1 rounded-3xl   ${activeTab === "blogs" ? "bg-myBlue text-yellow-400" : ""
+            }`}
           onClick={() => handleTabClick("blogs")}
         >
           <NavLink
@@ -40,9 +38,8 @@ const NavBar = () => {
           </NavLink>
         </li>
         <li
-          className={`flex-1 rounded-3xl  ${
-            activeTab === "account" ? "bg-myBlue text-yellow-400" : ""
-          }`}
+          className={`flex-1 rounded-3xl  ${activeTab === "account" ? "bg-myBlue text-yellow-400" : ""
+            }`}
           onClick={() => handleTabClick("account")}
         >
           <NavLink

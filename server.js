@@ -28,7 +28,7 @@ app.use(cors(corsOptions));
 
 dbConnect().then(() => {
   redisClient.connect();
-  app.listen(port, "0.0.0.0", () => console.log("App running on Port 3333"));
+  app.listen(port, "0.0.0.0", () => console.log(`App running on Port ${port}`));
 });
 
 app.get("/", (req, res) => {
